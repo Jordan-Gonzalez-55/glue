@@ -1,0 +1,40 @@
+{
+  "name" : "job-bookmark-2",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::117853645364:role/service-role/AWSGlueServiceRole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-117853645364-us-east-1/scripts/job-bookmark-2.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-117853645364-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--job-bookmark-option" : "job-bookmark-enable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-117853645364-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1764880012712\":{\"S3CsvSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://glue-input-jordan/bookmarks/input/orders_2025_09_01.csv\"},\"Escaper\":\"\",\"Exclusions\":[],\"Name\":\"Amazon S3\",\"OptimizePerformance\":false,\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"order_id\",\"Type\":\"string\"},{\"Name\":\"order_date\",\"Type\":\"string\"},{\"Name\":\"amount\",\"Type\":\"string\"}]}],\"Paths\":[\"s3://glue-input-jordan/bookmarks/input/\"],\"QuoteChar\":\"quote\",\"Recurse\":true,\"Separator\":\"comma\",\"WithHeader\":true}},\"node-1764880044332\":{\"S3DirectTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1764878433106\",\"IsEnabled\":true},\"Compression\":\"none\",\"Format\":\"csv\",\"Inputs\":[\"node-1764880034401\"],\"Name\":\"Amazon S3\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://glue-input-jordan/bookmarks/output2/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1764880034401\":{\"ApplyMapping\":{\"Inputs\":[\"node-1764880012712\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"order_id\"],\"FromType\":\"string\",\"ToKey\":\"order_id\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"order_date\"],\"FromType\":\"string\",\"ToKey\":\"order_date\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"amount\"],\"FromType\":\"string\",\"ToKey\":\"amount\",\"ToType\":\"double\"}],\"Name\":\"Change Schema\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "glue",
+    "branch" : "main",
+    "folder" : "job-bookmark-2"
+  }
+}
