@@ -16,7 +16,7 @@ job.init(args['JOB_NAME'], args)
 # Path to the input CSV file in S3
 s3_input_path = "s3://glue-input-jordan/scripts/products.csv"
 
-print("========== Starting Glue Job ==========")
+print("========== Starting Glue Job V1==========")
 
 # Read CSV as a DynamicFrame
 print("Reading CSV file from S3...")
